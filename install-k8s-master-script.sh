@@ -45,7 +45,7 @@ sudo apt-get install containerd.io
 # download and install the CNI plugin
 wget https://github.com/containernetworking/plugins/releases/download/v1.3.0/cni-plugins-linux-amd64-v1.3.0.tgz
 sudo mkdir -p /opt/cni/bin
-tar -vzxf cni-plugins-linux-amd64-v1.3.0.tgz
+tar -vzxf /opt/cni/bin cni-plugins-linux-amd64-v1.3.0.tgz
 
 # add the two lines bellow at /etc/containerd/config.toml and comment the line about disable plugins
 sudo /bin/sh -c "echo [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options] >> /etc/containerd/config.toml"
@@ -83,3 +83,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # Installing a Pod network add-on
 kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+# command to add new node
+# kubeadm token create --print-join-command
